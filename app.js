@@ -15,8 +15,14 @@ const schema = makeSchema({
     },
 })
 
-const server = new ApolloServer({schema})
+const server = new ApolloServer({
+    schema,
+    introspection: true,
+    playground: true,
+})
 
-server.listen({port:4010}).then(({url}) => {
+const PORT = process.env.PORT || 4010
+
+server.listen({port:PORT}).then(({url}) => {
     console.log(`🚀 Server ready at ${url}`)
 })
